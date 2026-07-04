@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniCalc BD — SGPA, CGPA & Waiver Calculator for Bangladesh Universities</title>
+<meta name="description" content="Calculate SGPA, CGPA, target GPA and tuition waiver instantly for BUBT and other Bangladesh private universities. Free, accurate, and fast.">
+<meta property="og:title" content="UniCalc BD — SGPA, CGPA & Waiver Calculator">
+<meta property="og:description" content="Instant SGPA, CGPA, Target GPA and Waiver calculators for Bangladesh private universities.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://unicalc.bd/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+
+<script>
+  tailwind = { config: { darkMode: 'class' } };
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="assets/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UniCalc BD",
+  "applicationCategory": "EducationApplication",
+  "operatingSystem": "Any",
+  "description": "SGPA, CGPA, Target GPA and Waiver calculator for Bangladesh private universities.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BDT" }
+}
+</script>
+</head>
+<body class="antialiased">
+
+<!-- ============ NAV ============ -->
+<header class="sticky top-0 z-50 glass no-print">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="#/" class="flex items-center gap-2 font-display font-extrabold text-lg" style="color:var(--ink)">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl" style="background:linear-gradient(135deg,var(--primary),var(--accent))">
+          <span class="text-white text-base">🎓</span>
+        </span>
+        UniCalc <span style="color:var(--primary)">BD</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium" style="color:var(--ink-soft)">
+        <a href="#/" class="nav-link" data-route="/">Home</a>
+        <div class="relative group">
+          <button class="nav-link flex items-center gap-1">Calculators <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path d="M5 7l5 6 5-6z"/></svg></button>
+          <div class="absolute left-0 top-full pt-3 hidden group-hover:block">
+            <div class="card w-64 p-2 grid gap-1 text-sm">
+              <a href="#/sgpa" class="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5">SGPA Calculator</a>
+              <a href="#/cgpa" class="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5">CGPA Calculator</a>
+              <a href="#/target" class="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5">Target GPA Calculator</a>
+              <a href="#/waiver" class="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5">Waiver Calculator</a>
+              <a href="#/converter" class="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5">Grade Converter</a>
+              <a href="#/credit" class="px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5">Credit Calculator</a>
+            </div>
+          </div>
+        </div>
+        <a href="#/universities" class="nav-link" data-route="/universities">Universities</a>
+        <a href="#/dashboard" class="nav-link" data-route="/dashboard">Dashboard</a>
+        <a href="#/blog" class="nav-link" data-route="/blog">Blog</a>
+        <a href="#/faq" class="nav-link" data-route="/faq">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div id="theme-toggle" class="switch" title="Toggle dark mode"><div class="knob"></div></div>
+        <a href="#/sgpa" class="btn-primary px-4 py-2 text-sm hidden sm:inline-block">Calculate Now</a>
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg" style="color:var(--ink)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden lg:hidden border-t px-4 py-3 grid gap-1 text-sm" style="border-color:var(--border)">
+    <a href="#/" class="px-3 py-2 rounded-lg">Home</a>
+    <a href="#/sgpa" class="px-3 py-2 rounded-lg">SGPA Calculator</a>
+    <a href="#/cgpa" class="px-3 py-2 rounded-lg">CGPA Calculator</a>
+    <a href="#/target" class="px-3 py-2 rounded-lg">Target GPA Calculator</a>
+    <a href="#/waiver" class="px-3 py-2 rounded-lg">Waiver Calculator</a>
+    <a href="#/converter" class="px-3 py-2 rounded-lg">Grade Converter</a>
+    <a href="#/credit" class="px-3 py-2 rounded-lg">Credit Calculator</a>
+    <a href="#/universities" class="px-3 py-2 rounded-lg">Universities</a>
+    <a href="#/dashboard" class="px-3 py-2 rounded-lg">Dashboard</a>
+    <a href="#/blog" class="px-3 py-2 rounded-lg">Blog</a>
+    <a href="#/faq" class="px-3 py-2 rounded-lg">FAQ</a>
+  </div>
+</header>
+
+<!-- ============ APP VIEW ============ -->
+<main id="app-view" class="min-h-[70vh]"></main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t mt-20 no-print" style="border-color:var(--border)">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <div class="flex items-center gap-2 font-display font-extrabold text-lg mb-3">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg" style="background:linear-gradient(135deg,var(--primary),var(--accent))">
+          <span class="text-white text-sm">🎓</span>
+        </span>
+        UniCalc BD
+      </div>
+      <p class="text-sm" style="color:var(--ink-soft)">Instant, accurate academic calculators for Bangladesh's private university students.</p>
+    </div>
+    <div>
+      <h4 class="font-semibold mb-3 text-sm">Calculators</h4>
+      <div class="grid gap-2 text-sm" style="color:var(--ink-soft)">
+        <a href="#/sgpa" class="hover:underline">SGPA Calculator</a>
+        <a href="#/cgpa" class="hover:underline">CGPA Calculator</a>
+        <a href="#/waiver" class="hover:underline">Waiver Calculator</a>
+        <a href="#/target" class="hover:underline">Target GPA Calculator</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-semibold mb-3 text-sm">Company</h4>
+      <div class="grid gap-2 text-sm" style="color:var(--ink-soft)">
+        <a href="#/about" class="hover:underline">About</a>
+        <a href="#/contact" class="hover:underline">Contact</a>
+        <a href="#/blog" class="hover:underline">Blog</a>
+        <a href="#/faq" class="hover:underline">FAQ</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-semibold mb-3 text-sm">Legal</h4>
+      <div class="grid gap-2 text-sm" style="color:var(--ink-soft)">
+        <a href="#/privacy" class="hover:underline">Privacy Policy</a>
+        <a href="#/terms" class="hover:underline">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t py-6 text-center text-xs" style="border-color:var(--border); color:var(--ink-soft)">
+    © 2026 UniCalc BD. Built by Dipto Dey for students, not affiliated with any university. Figures for non-BUBT universities are indicative demo data.
+  </div>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

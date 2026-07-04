@@ -1,6 +1,10 @@
-# UniCalc-BD
-🎓 UniCalc BD — SGPA, CGPA &amp; tuition waiver calculator for Bangladesh private university students. BUBT policy fully modeled. Built with HTML, Tailwind &amp; Chart.js.
 # UniCalc BD — Demo Build
+
+## What this is
+A fully working, static website (no build step, no server, no database required).
+Unzip it and open `index.html` in any browser, or deploy the folder as-is to any
+static host (Vercel, Netlify, GitHub Pages, etc.) — internet connection is needed
+because fonts/Chart.js load from a CDN.
 
 ## What's included and working
 - Home page with a live mini SGPA calculator, animated stats, feature grid
@@ -28,4 +32,14 @@ percentages, minimum CGPA) are placeholder/representative data for demo purposes
 marked "Demo Data" in the Universities directory — and should be replaced with each
 institution's official published policy before real-world use.
 
+## If you want to go further
+Good next steps, roughly in order of effort:
+1. Replace placeholder university data with verified official policies.
+2. Add a real backend (e.g. Next.js + Prisma + PostgreSQL) so calculations and
+   dashboards persist per logged-in user instead of local storage.
+3. Add authentication (Clerk/NextAuth) and an admin panel for managing universities,
+   grading scales, and waiver rules without touching code.
+4. Wire up a real blog/CMS and PWA install support.
 
+Happy to build any one of these next as a focused, real (not scaffolded) piece —
+that tends to produce much better results than generating the entire stack at once.
