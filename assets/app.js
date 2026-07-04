@@ -206,8 +206,8 @@ function pageHome() {
   </section>
 
   <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-    <div class="card p-10 text-center" style="background:linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, var(--surface)), color-mix(in srgb, var(--accent) 8%, var(--surface)))">
-      <h3 class="font-display font-bold text-2xl mb-2">Know your waiver before you register</h3>
+    <div class="card p-6 sm:p-10 text-center" style="background:linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, var(--surface)), color-mix(in srgb, var(--accent) 8%, var(--surface)))">
+      <h3 class="font-display font-bold text-xl sm:text-2xl mb-2">Know your waiver before you register</h3>
       <p style="color:var(--ink-soft)" class="mb-6">Plan your semester's tuition with the waiver calculator, built on official BUBT bracket rules.</p>
       <a href="#/waiver" class="btn-primary px-6 py-3 inline-block">Open Waiver Calculator</a>
     </div>
@@ -247,11 +247,11 @@ function pageHome() {
   let miniRows = [{ id: uid(), name: 'Course 1', credit: 3, grade: 'A' }, { id: uid(), name: 'Course 2', credit: 3, grade: 'A-' }];
   function renderMini() {
     document.getElementById('mini-rows').innerHTML = miniRows.map(r => `
-      <div class="grid grid-cols-[1fr_70px_100px_28px] gap-2 items-center" data-row="${r.id}">
-        <input class="input px-3 py-2 text-sm mini-name" value="${r.name}" placeholder="Course name">
-        <input type="number" min="0" max="6" class="input px-2 py-2 text-sm mini-credit" value="${r.credit}">
-        <select class="input px-2 py-2 text-sm mini-grade">${gradeOptionsFor(scale).replace(`value="${r.grade}"`, `value="${r.grade}" selected`)}</select>
-        <button class="mini-del text-red-500 text-lg leading-none">×</button>
+      <div class="flex flex-col gap-2 sm:grid sm:grid-cols-[minmax(0,1fr)_70px_100px_28px] sm:items-center" data-row="${r.id}">
+        <input class="input px-3 py-2 text-sm mini-name w-full" value="${r.name}" placeholder="Course name">
+        <input type="number" min="0" max="6" class="input px-2 py-2 text-sm mini-credit w-full sm:w-auto" value="${r.credit}">
+        <select class="input px-2 py-2 text-sm mini-grade w-full sm:w-auto">${gradeOptionsFor(scale).replace(`value="${r.grade}"`, `value="${r.grade}" selected`)}</select>
+        <button class="mini-del text-red-500 text-lg leading-none self-end sm:self-auto">×</button>
       </div>`).join('');
     document.getElementById('mini-rows').querySelectorAll('[data-row]').forEach(rowEl => {
       const id = rowEl.dataset.row;
@@ -285,25 +285,25 @@ function pageSGPA() {
 
   view.innerHTML = toolShell('SGPA Calculator', 'Add every course from this semester to get your exact SGPA.', `
     <div class="grid lg:grid-cols-3 gap-6">
-      <div class="lg:col-span-2 card p-6">
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-          <div class="flex items-center gap-2">
+      <div class="lg:col-span-2 card p-4 sm:p-6">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-5">
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
             <label class="text-sm font-medium">University grading scale</label>
             <select id="sgpa-uni" class="input px-3 py-2 text-sm">${uniOptions(uniId)}</select>
           </div>
-          <div class="flex gap-2">
+          <div class="flex flex-wrap gap-2">
             <button id="sgpa-reset" class="btn-ghost px-4 py-2 text-sm">Reset</button>
             <button id="sgpa-print" class="btn-primary px-4 py-2 text-sm">Export / Print</button>
           </div>
         </div>
-        <div class="grid grid-cols-[1fr_90px_120px_28px] gap-2 text-xs font-semibold mb-2 px-1" style="color:var(--ink-soft)">
+        <div class="hidden sm:grid sm:grid-cols-[minmax(0,1fr)_90px_120px_28px] gap-2 text-xs font-semibold mb-2 px-1" style="color:var(--ink-soft)">
           <div>Course name</div><div>Credit</div><div>Grade</div><div></div>
         </div>
         <div id="sgpa-rows" class="grid gap-2"></div>
         <button id="sgpa-add" class="mt-4 text-sm font-semibold" style="color:var(--primary)">+ Add subject</button>
       </div>
 
-      <div class="card p-6 text-center">
+      <div class="card p-4 sm:p-6 text-center">
         <h3 class="font-display font-bold mb-4">Your SGPA</h3>
         <div class="max-w-[220px] mx-auto">${gaugeSVG('sgpa-gauge', 0)}</div>
         <div class="grid grid-cols-2 gap-3 mt-6 text-sm">
@@ -325,11 +325,11 @@ function pageSGPA() {
 
   function renderRows() {
     document.getElementById('sgpa-rows').innerHTML = rows.map(r => `
-      <div class="grid grid-cols-[1fr_90px_120px_28px] gap-2 items-center" data-row="${r.id}">
-        <input class="input px-3 py-2 text-sm r-name" placeholder="e.g. Data Structures" value="${r.name}">
-        <input type="number" min="0" max="6" class="input px-2 py-2 text-sm r-credit" value="${r.credit}">
-        <select class="input px-2 py-2 text-sm r-grade">${gradeOptionsFor(currentScale())}</select>
-        <button class="r-del text-red-500 text-xl leading-none">×</button>
+      <div class="flex flex-col gap-2 sm:grid sm:grid-cols-[minmax(0,1fr)_90px_120px_28px] sm:items-center" data-row="${r.id}">
+        <input class="input px-3 py-2 text-sm r-name w-full" placeholder="e.g. Data Structures" value="${r.name}">
+        <input type="number" min="0" max="6" class="input px-2 py-2 text-sm r-credit w-full sm:w-auto" value="${r.credit}">
+        <select class="input px-2 py-2 text-sm r-grade w-full sm:w-auto">${gradeOptionsFor(currentScale())}</select>
+        <button class="r-del text-red-500 text-xl leading-none self-end sm:self-auto">×</button>
       </div>`).join('');
     document.getElementById('sgpa-rows').querySelectorAll('[data-row]').forEach(rowEl => {
       const id = rowEl.dataset.row;
@@ -387,15 +387,15 @@ function pageCGPA() {
 
   view.innerHTML = toolShell('CGPA Calculator', 'Combine every completed semester into your cumulative GPA.', `
     <div class="grid lg:grid-cols-3 gap-6">
-      <div class="lg:col-span-2 card p-6">
-        <div class="grid grid-cols-[1fr_100px_100px_28px] gap-2 text-xs font-semibold mb-2 px-1" style="color:var(--ink-soft)">
+      <div class="lg:col-span-2 card p-4 sm:p-6">
+        <div class="hidden sm:grid sm:grid-cols-[minmax(0,1fr)_100px_100px_28px] gap-2 text-xs font-semibold mb-2 px-1" style="color:var(--ink-soft)">
           <div>Semester</div><div>SGPA</div><div>Credits</div><div></div>
         </div>
         <div id="cgpa-rows" class="grid gap-2"></div>
         <button id="cgpa-add" class="mt-4 text-sm font-semibold" style="color:var(--primary)">+ Add semester</button>
         <div class="mt-6"><canvas id="cgpa-line"></canvas></div>
       </div>
-      <div class="card p-6 text-center">
+      <div class="card p-4 sm:p-6 text-center">
         <h3 class="font-display font-bold mb-4">Your CGPA</h3>
         <div class="max-w-[220px] mx-auto">${gaugeSVG('cgpa-gauge', 0)}</div>
         <div class="mt-6 p-3 rounded-xl text-sm" style="background:color-mix(in srgb, var(--primary) 8%, transparent)">
@@ -409,11 +409,11 @@ function pageCGPA() {
 
   function renderRows() {
     document.getElementById('cgpa-rows').innerHTML = semesters.map((s, i) => `
-      <div class="grid grid-cols-[1fr_100px_100px_28px] gap-2 items-center" data-row="${s.id}">
-        <input class="input px-3 py-2 text-sm s-label" value="${s.label}">
-        <input type="number" step="0.01" min="0" max="4" class="input px-2 py-2 text-sm s-sgpa" value="${s.sgpa}">
-        <input type="number" min="0" class="input px-2 py-2 text-sm s-credits" value="${s.credits}">
-        <button class="s-del text-red-500 text-xl leading-none">×</button>
+      <div class="flex flex-col gap-2 sm:grid sm:grid-cols-[minmax(0,1fr)_100px_100px_28px] sm:items-center" data-row="${s.id}">
+        <input class="input px-3 py-2 text-sm s-label w-full" value="${s.label}">
+        <input type="number" step="0.01" min="0" max="4" class="input px-2 py-2 text-sm s-sgpa w-full sm:w-auto" value="${s.sgpa}">
+        <input type="number" min="0" class="input px-2 py-2 text-sm s-credits w-full sm:w-auto" value="${s.credits}">
+        <button class="s-del text-red-500 text-xl leading-none self-end sm:self-auto">×</button>
       </div>`).join('');
     document.getElementById('cgpa-rows').querySelectorAll('[data-row]').forEach(rowEl => {
       const id = rowEl.dataset.row;
@@ -462,13 +462,13 @@ function pageCGPA() {
 function pageTarget() {
   view.innerHTML = toolShell('Target GPA Calculator', 'Find the SGPA you need this semester to reach your target CGPA.', `
     <div class="grid lg:grid-cols-2 gap-6">
-      <div class="card p-6 grid gap-4">
+      <div class="card p-4 sm:p-6 grid gap-4">
         <div><label class="text-sm font-medium">Current CGPA</label><input id="t-current" type="number" step="0.01" min="0" max="4" value="3.40" class="input w-full px-3 py-2 mt-1"></div>
         <div><label class="text-sm font-medium">Completed Credits</label><input id="t-credits" type="number" min="0" value="60" class="input w-full px-3 py-2 mt-1"></div>
         <div><label class="text-sm font-medium">Target CGPA</label><input id="t-target" type="number" step="0.01" min="0" max="4" value="3.60" class="input w-full px-3 py-2 mt-1"></div>
         <div><label class="text-sm font-medium">This Semester's Credits</label><input id="t-sem-credits" type="number" min="1" value="15" class="input w-full px-3 py-2 mt-1"></div>
       </div>
-      <div class="card p-6 text-center flex flex-col items-center justify-center">
+      <div class="card p-4 sm:p-6 text-center flex flex-col items-center justify-center">
         <h3 class="font-display font-bold mb-4">Required SGPA</h3>
         <div class="max-w-[220px]">${gaugeSVG('t-gauge', 0)}</div>
         <p id="t-message" class="text-sm mt-4" style="color:var(--ink-soft)"></p>
@@ -501,14 +501,14 @@ function pageWaiver() {
   let uniId = 'bubt';
   view.innerHTML = toolShell('Waiver Calculator', 'Estimate your tuition fee waiver bracket based on continuing CGPA.', `
     <div class="grid lg:grid-cols-2 gap-6">
-      <div class="card p-6 grid gap-4">
+      <div class="card p-4 sm:p-6 grid gap-4">
         <div><label class="text-sm font-medium">University</label><select id="w-uni" class="input w-full px-3 py-2 mt-1">${uniOptions(uniId)}</select></div>
         <div><label class="text-sm font-medium">Department Category</label><select id="w-dept" class="input w-full px-3 py-2 mt-1"></select></div>
         <div><label class="text-sm font-medium">Current CGPA</label><input id="w-cgpa" type="number" step="0.01" min="0" max="4" value="3.90" class="input w-full px-3 py-2 mt-1"></div>
         <div><label class="text-sm font-medium">Current Credits Completed</label><input id="w-credits" type="number" min="0" value="90" class="input w-full px-3 py-2 mt-1"></div>
         <div><label class="text-sm font-medium">Per-Semester Tuition Fee (৳)</label><input id="w-tuition" type="number" min="0" value="60000" class="input w-full px-3 py-2 mt-1"></div>
       </div>
-      <div class="card p-6">
+      <div class="card p-4 sm:p-6">
         <h3 class="font-display font-bold mb-4">Result</h3>
         <div id="w-result" class="grid gap-3"></div>
         <div class="mt-5 p-4 rounded-xl text-xs" style="background:color-mix(in srgb, var(--accent) 8%, transparent); color:var(--ink-soft)" id="w-policy-note"></div>
@@ -564,12 +564,12 @@ function pageConverter() {
   let uniId = 'bubt';
   view.innerHTML = toolShell('Grade Converter', 'Convert raw marks into a letter grade and grade point.', `
     <div class="grid lg:grid-cols-2 gap-6">
-      <div class="card p-6 grid gap-4">
+      <div class="card p-4 sm:p-6 grid gap-4">
         <div><label class="text-sm font-medium">University Scale</label><select id="c-uni" class="input w-full px-3 py-2 mt-1">${uniOptions(uniId)}</select></div>
         <div><label class="text-sm font-medium">Marks (out of 100)</label><input id="c-marks" type="number" min="0" max="100" value="82" class="input w-full px-3 py-2 mt-1"></div>
         <div id="c-result" class="mt-2 p-5 rounded-xl text-center" style="background:color-mix(in srgb, var(--primary) 8%, transparent)"></div>
       </div>
-      <div class="card p-6">
+      <div class="card p-4 sm:p-6">
         <h3 class="font-display font-bold mb-4">Full Grading Table</h3>
         <table class="w-full text-sm" id="c-table"></table>
       </div>
@@ -600,7 +600,7 @@ function pageConverter() {
 function pageCredit() {
   let rows = [{ id: uid(), name: '', credit: 3 }];
   view.innerHTML = toolShell('Credit Calculator', 'Add your courses to total up credit hours for the semester.', `
-    <div class="card p-6 max-w-xl">
+    <div class="card p-4 sm:p-6 w-full max-w-xl">
       <div id="cr-rows" class="grid gap-2"></div>
       <button id="cr-add" class="mt-4 text-sm font-semibold" style="color:var(--primary)">+ Add course</button>
       <div class="mt-6 p-4 rounded-xl flex items-center justify-between" style="background:color-mix(in srgb, var(--primary) 8%, transparent)">
@@ -611,10 +611,10 @@ function pageCredit() {
   `);
   function render() {
     document.getElementById('cr-rows').innerHTML = rows.map(r => `
-      <div class="grid grid-cols-[1fr_90px_28px] gap-2" data-row="${r.id}">
-        <input class="input px-3 py-2 text-sm cr-name" placeholder="Course name" value="${r.name}">
-        <input type="number" min="0" max="6" class="input px-2 py-2 text-sm cr-credit" value="${r.credit}">
-        <button class="cr-del text-red-500 text-xl leading-none">×</button>
+      <div class="flex flex-col gap-2 sm:grid sm:grid-cols-[minmax(0,1fr)_90px_28px] sm:items-center" data-row="${r.id}">
+        <input class="input px-3 py-2 text-sm cr-name w-full" placeholder="Course name" value="${r.name}">
+        <input type="number" min="0" max="6" class="input px-2 py-2 text-sm cr-credit w-full sm:w-auto" value="${r.credit}">
+        <button class="cr-del text-red-500 text-xl leading-none self-end sm:self-auto">×</button>
       </div>`).join('');
     document.getElementById('cr-rows').querySelectorAll('[data-row]').forEach(rowEl => {
       const id = rowEl.dataset.row; const r = rows.find(x=>x.id===id);
