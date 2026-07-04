@@ -199,3 +199,9 @@ body {
   nav, footer, .no-print { display: none !important; }
   body { background: #fff !important; color: #000 !important; }
 }
+
+
+html,body{width:100%;overflow-x:hidden;}
+img,svg,canvas{max-width:100%;height:auto}
+.card{overflow:hidden}
+@media(max-width:640px){h1{word-break:break-word}.gpa-dial{max-width:170px;margin:auto}}
