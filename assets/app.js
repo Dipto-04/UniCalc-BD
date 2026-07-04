@@ -155,21 +155,21 @@ function toolShell(title, sub, bodyHtml) {
    ============================================================ */
 function pageHome() {
   view.innerHTML = `
-  <section class="hero-bg pt-16 pb-20 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+  <section class="hero-bg pt-10 sm:pt-16 pb-12 sm:pb-20 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
       <div>
         <div class="badge inline-flex items-center gap-1.5 mb-5" style="background:color-mix(in srgb, var(--accent) 14%, transparent); color:#16803d">
           <span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent)"></span> Trusted by students at 50+ universities
         </div>
-        <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.08] tracking-tight">
+        <h1 class="font-display font-extrabold text-3xl sm:text-5xl lg:text-[3.4rem] leading-tight tracking-tight break-words">
           Calculate SGPA, CGPA & University Waiver <span style="color:var(--primary)">Instantly</span>
         </h1>
-        <p class="mt-5 text-lg" style="color:var(--ink-soft)">Support for all Bangladesh private universities — grading scales, waiver policies and graduation rules, built into one fast calculator.</p>
-        <div class="mt-8 flex flex-wrap gap-3">
+        <p class="mt-5 text-base sm:text-lg" style="color:var(--ink-soft)">Support for all Bangladesh private universities — grading scales, waiver policies and graduation rules, built into one fast calculator.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
           <a href="#/sgpa" class="btn-primary px-6 py-3.5 inline-block">Calculate Now</a>
           <a href="#/universities" class="btn-ghost px-6 py-3.5 inline-block">Explore Universities</a>
         </div>
-        <div class="mt-12 grid grid-cols-3 gap-6 max-w-md">
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-md">
           <div><div class="stat-num font-display font-extrabold text-3xl" id="stat-1" style="color:var(--primary)">0</div><div class="text-xs mt-1" style="color:var(--ink-soft)">Universities</div></div>
           <div><div class="stat-num font-display font-extrabold text-3xl" id="stat-2" style="color:var(--primary)">0</div><div class="text-xs mt-1" style="color:var(--ink-soft)">Calculations</div></div>
           <div><div class="stat-num font-display font-extrabold text-3xl" id="stat-3" style="color:var(--primary)">0%</div><div class="text-xs mt-1" style="color:var(--ink-soft)">Accuracy</div></div>
